@@ -9,6 +9,9 @@ public class Character {
 
     public int takeDamage(int attack){
         this.health -= attack;
+        if(this.health < 0){
+            this.health = 0;
+        }
         return this.health;
     }
 
