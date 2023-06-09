@@ -1,6 +1,6 @@
 public class Character {
     private int health;
-    private int attack;
+    private final int attack;
 
     public Character(int health, int attack){
         this.health = health;
