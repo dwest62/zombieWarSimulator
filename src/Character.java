@@ -7,7 +7,10 @@ public class Character {
         this.attack = attack;
     }
 
-    public Character(){}
+    public Character(){
+        this.health = 20;
+        this.attack = 20;
+    }
 
     public int takeDamage(int attack){
         this.health -= attack;
