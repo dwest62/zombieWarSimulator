@@ -6,11 +6,43 @@ public class ZombieWarSimulator {
     public static void main(String[] args){
         int zombieTeamSize = generateTeamSize();
         int survivorTeamSize = generateTeamSize();
+        boolean continueWar = true;
+        //0 for survivors, 1 for zombies
+        int curTeam = 0;
+        System.out.println("Zombies: " + zombieTeamSize + "\nSurvivors: " + survivorTeamSize);
+
+        System.out.println("There are " + survivorTeamSize + " survivors trying to make it to safety.");
+        System.out.println("Unfortunately, there are " + zombieTeamSize + " zombies waiting for them.");
 
         Team teamZombie = generateZombieTeam(zombieTeamSize);
         Team teamSurvivor = generateSurvivorTeam(survivorTeamSize);
 
-        teamSurvivor.battle(teamZombie);
+        while(continueWar) {
+            boolean b = false;
+            switch(curTeam){
+                case 0:
+                    b = teamSurvivor.battle(teamZombie);
+                    curTeam = 1;
+                    break;
+                case 1:
+                    b = teamZombie.battle(teamSurvivor);
+                    curTeam = 0;
+                    break;
+            }
+            if(b){
+                continueWar = false;
+            }
+
+        }
+        System.out.println("Zombie graveyard: " + teamZombie.getGraveyard().size());
+        System.out.println("Survivor graveyard: " + teamSurvivor.getGraveyard().size());
+        if(teamZombie.getGraveyard().size() == zombieTeamSize){
+            System.out.println("Survivors win!");
+        }
+        else{
+            System.out.println("Zombies win!");
+        }
+
 
         System.out.println("Zombie team size: " + teamZombie.getSize() + "\nSurvivor size: " + teamSurvivor.getSize());
 
@@ -56,4 +88,6 @@ public class ZombieWarSimulator {
         }
         return new Team(survivorMembers);
     }
+
+
 }
