@@ -21,7 +21,7 @@ public class Team {
         
         this.getMembers().forEach(teamMember ->
             otherTeam.getMembers().forEach(otherTeamMember -> {
-                if(teamMember.attack(otherTeamMember) == 0) otherTeam.remove(otherTeamMember);
+                if(teamMember.attack(otherTeamMember) == 0) otherTeam.moveToGraveyard(otherTeamMember);
             })
         );
         return otherTeam.getSize() == 0;
@@ -31,7 +31,7 @@ public class Team {
         return members.size();
     }
     
-    public boolean remove(Character character) {
+    public boolean moveToGraveyard(Character character) {
         this.graveyard.add(character);
         return this.getMembers().remove(character);
     }
