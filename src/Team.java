@@ -19,11 +19,10 @@ public class Team {
      */
     public boolean battle(Team otherTeam){
         
-        this.getMembers().forEach(teamMember ->
-            otherTeam.getMembers().forEach(otherTeamMember -> {
+        for(Character teamMember: this.getMembers())
+            for(Character otherTeamMember: otherTeam.getMembers())
                 if(teamMember.attack(otherTeamMember) == 0) otherTeam.moveToGraveyard(otherTeamMember);
-            })
-        );
+        
         return otherTeam.getSize() == 0;
     }
 
