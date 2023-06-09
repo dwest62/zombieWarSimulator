@@ -1,5 +1,5 @@
 public class Soldier extends Character {
 	public Soldier() {
-		super(100, 10);
+		super(50, 5);
 	}
 }
