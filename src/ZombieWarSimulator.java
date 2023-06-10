@@ -19,8 +19,9 @@ public class ZombieWarSimulator {
 			currTeam = currTeam.equals(TeamType.SURVIVOR) ? TeamType.ZOMBIES : TeamType.SURVIVOR;
 		}
 		
-		System.out.println("It seems " + teamSurvivor.getSize() + (teamSurvivor.getSize() == 1 ? "has" : " have ") +
-			"made it to safety.");
+
+		System.out.println("It seems " + teamSurvivor.getSize() +
+			(teamSurvivor.getSize() == 1 ? " has " : " have ") + "made it to safety.");
 	}
 	public static int generateTeamSize(){
 		return 1 + (int)(Math.random() *20);
