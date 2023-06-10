@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+
 public class ZombieWarSimulator {
 	public static void main(String[] args){
 		int zombieTeamSize = generateTeamSize();

@@ -22,6 +22,7 @@ public class Team {
         for(Character teamMember: this.getMembers())
             for(Character otherTeamMember: otherTeamMembers)
                 if(teamMember.attack(otherTeamMember) == 0) otherTeam.moveToGraveyard(otherTeamMember);
+
         
         return otherTeam.getSize() == 0;
     }
