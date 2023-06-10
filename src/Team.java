@@ -18,13 +18,13 @@ public class Team {
     of the battle.
      */
     public boolean battle(Team otherTeam){
+        List<Character> otherTeamMembers = otherTeam.getMembers().stream().toList();
         for(Character teamMember: this.getMembers())
-            for(Character otherTeamMember: otherTeam.getMembers()) {
+            for(Character otherTeamMember: otherTeamMembers) {
                 if(otherTeam.getGraveyard().contains(otherTeamMember))
                     break;
                 else if (teamMember.attack(otherTeamMember) == 0) otherTeam.moveToGraveyard(otherTeamMember);
             }
-
         
         return otherTeam.getSize() == 0;
     }
