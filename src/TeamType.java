@@ -1,2 +1,4 @@
-package PACKAGE_NAME;public enum TeamType {
+public enum TeamType {
+	ZOMBIES,
+	SURVIVOR
 }
