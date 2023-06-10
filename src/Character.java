@@ -7,7 +7,6 @@ public class Character {
         this.attack = attack;
     }
 
-
     public int takeDamage(int attack){
         this.health -= attack;
         if(this.health < 0){
