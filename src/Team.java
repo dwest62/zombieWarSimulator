@@ -27,6 +27,7 @@ public class Team {
             for(Character attacker: attackers)
                 if (!victimTeam.getGraveyard().contains(victim) && attacker.attack(victim) == 0)
                     victimTeam.moveToGraveyard(victim);
+
         
         return victimTeam.getSize() == 0;
     }
