@@ -20,8 +20,11 @@ public class Team {
     public boolean battle(Team otherTeam){
         
         for(Character teamMember: this.getMembers())
-            for(Character otherTeamMember: otherTeam.getMembers())
-                if(teamMember.attack(otherTeamMember) == 0) otherTeam.moveToGraveyard(otherTeamMember);
+            for(Character otherTeamMember: otherTeam.getMembers()) {
+                if(otherTeam.getGraveyard().contains(otherTeamMember))
+                    break;
+                else if (teamMember.attack(otherTeamMember) == 0) otherTeam.moveToGraveyard(otherTeamMember);
+            }
         
         return otherTeam.getSize() == 0;
     }
