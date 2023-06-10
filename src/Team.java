@@ -25,6 +25,7 @@ public class Team {
                     break;
                 else if (teamMember.attack(otherTeamMember) == 0) otherTeam.moveToGraveyard(otherTeamMember);
             }
+
         
         return otherTeam.getSize() == 0;
     }
