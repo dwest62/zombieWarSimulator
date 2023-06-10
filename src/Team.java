@@ -18,10 +18,17 @@ public class Team {
     of the battle.
      */
     public boolean battle(Team otherTeam){
+        List<Character> deadList = new ArrayList<>();
         
         for(Character teamMember: this.getMembers())
             for(Character otherTeamMember: otherTeam.getMembers())
-                if(teamMember.attack(otherTeamMember) == 0) otherTeam.moveToGraveyard(otherTeamMember);
+                if(otherTeamMember.isAlive()) {
+                    //if(teamMember.attack(otherTeamMember) == 0) otherTeam.moveToGraveyard(otherTeamMember);
+                    if (teamMember.attack(otherTeamMember) == 0) deadList.add(otherTeamMember);
+                }
+        for(Character deceased : deadList){
+            otherTeam.moveToGraveyard(deceased);
+        }
         
         return otherTeam.getSize() == 0;
     }
