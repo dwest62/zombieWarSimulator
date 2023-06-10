@@ -1,5 +1,9 @@
 import java.util.ArrayList;
 import java.util.List;
+
+/**
+ *
+ */
 public class ZombieWarSimulator {
 	public static void main(String[] args){
 		int zombieTeamSize = generateTeamSize();
@@ -26,6 +30,7 @@ public class ZombieWarSimulator {
 	public static int generateTeamSize(){
 		return 1 + (int)(Math.random() *20);
 	}
+	
 	public static Team generateZombieTeam(int size){
 		List<Character> zombieMembers = new ArrayList<>();
 		int zombieType;

@@ -19,6 +19,10 @@ public class Character {
         otherCharacter.takeDamage(this.attack);
         return otherCharacter.getHealth();
     }
+    
+    public int getAttack() {
+        return this.attack;
+    }
 
     public boolean isAlive(){
         return this.health > 0;

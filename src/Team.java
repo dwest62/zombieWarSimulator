@@ -18,18 +18,20 @@ public class Team {
     of the battle.
      */
 
-    public boolean battle(Team victimTeam){
-        List<Character> victims = victimTeam.getMembers().stream().toList();
+    public boolean battle(Team defenderTeam){
+        List<Character> defenders = defenderTeam.getMembers().stream().toList();
         List<Character> attackers = this.getMembers();
         
-        // Loops over each victim and checks if they are dead (in the graveyard). If they are not, each attacker
-        // attacks them.
-        for(Character victim: victims)
-            for(Character attacker: attackers)
-                if (!victimTeam.getGraveyard().contains(victim) && attacker.attack(victim) == 0)
-                    victimTeam.moveToGraveyard(victim);
+        int totalTeamAttackPower = attackers.stream()
+            .reduce(0, (accum, c) -> accum + c.getAttack(), Integer::sum);
         
-        return victimTeam.getSize() == 0;
+        // Loops over each victim and checks if they are dead (in the graveyard). If they are not, they take damage
+        // equal to the attackers total attack power.
+        for(Character defender: defenders)
+            if (!defenderTeam.getGraveyard().contains(defender) && defender.takeDamage(totalTeamAttackPower) == 0)
+                defenderTeam.moveToGraveyard(defender);
+        
+        return defenderTeam.getSize() == 0;
     }
 
     public int getSize(){
