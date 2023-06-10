@@ -7,6 +7,14 @@ public class Character {
         this.attack = attack;
     }
 
+<<<<<<< HEAD
+=======
+    public Character(){
+        this.health = 20;
+        this.attack = 20;
+    }
+
+>>>>>>> d04a0693860e42bf7590908e03cf0a885028a968
     public int takeDamage(int attack){
         this.health -= attack;
         if(this.health < 0){

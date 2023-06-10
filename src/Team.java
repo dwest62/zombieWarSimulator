@@ -18,10 +18,24 @@ public class Team {
     of the battle.
      */
     public boolean battle(Team otherTeam){
+<<<<<<< HEAD
         List<Character> otherTeamMembers = otherTeam.getMembers().stream().toList();
         for(Character teamMember: this.getMembers())
             for(Character otherTeamMember: otherTeamMembers)
                 if(teamMember.attack(otherTeamMember) == 0) otherTeam.moveToGraveyard(otherTeamMember);
+=======
+        List<Character> deadList = new ArrayList<>();
+        
+        for(Character teamMember: this.getMembers())
+            for(Character otherTeamMember: otherTeam.getMembers())
+                if(otherTeamMember.isAlive()) {
+                    //if(teamMember.attack(otherTeamMember) == 0) otherTeam.moveToGraveyard(otherTeamMember);
+                    if (teamMember.attack(otherTeamMember) == 0) deadList.add(otherTeamMember);
+                }
+        for(Character deceased : deadList){
+            otherTeam.moveToGraveyard(deceased);
+        }
+>>>>>>> d04a0693860e42bf7590908e03cf0a885028a968
         
         return otherTeam.getSize() == 0;
     }
