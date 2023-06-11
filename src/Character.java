@@ -1,3 +1,6 @@
+/**
+ * Represents a base Character class.
+ */
 public class Character {
     private int health;
     private final int attack;
@@ -6,7 +9,13 @@ public class Character {
         this.health = health;
         this.attack = attack;
     }
-
+    
+    /**
+     * Set the character's health to their current health minus the value of the attack with a floor of 0.
+     *
+     * @param attack The amount of damage this Character will take.
+     * @return The new health of the character.
+     */
     public int takeDamage(int attack){
         this.health -= attack;
         if(this.health < 0){
@@ -14,21 +23,14 @@ public class Character {
         }
         return this.health;
     }
-
-    public int attack(Character otherCharacter){
-        otherCharacter.takeDamage(this.attack);
-        return otherCharacter.getHealth();
-    }
     
+    /**
+     * Gets the character's attack stat.
+     *
+     * @return The int representing the character's attack stat.
+     */
     public int getAttack() {
         return this.attack;
     }
-
-    public boolean isAlive(){
-        return this.health > 0;
-    }
-
-    public int getHealth(){
-        return this.health;
-    }
+    
 }
