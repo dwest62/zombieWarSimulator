@@ -33,7 +33,7 @@ public class ZombieWarSimulator {
 		System.out.println(")");
 		System.out.print("But, there are " + zombieTeamSize + " zombies waiting for them. (");
 		System.out.print(teamZombie.getMembers().stream()
-			.filter(m -> m.getClass().equals(CommonInfect.class))
+			.filter(m -> m.getClass().equals(CommonInfected.class))
 			.count()+ " Common Infected, ");
 		System.out.println(teamZombie.getMembers().stream()
 			.filter(m -> m.getClass().equals(Tank.class))
@@ -80,7 +80,7 @@ public class ZombieWarSimulator {
 		for (int i = 0; i < size; i++){
 			zombieType = (int)(Math.random()*2);
 			switch (zombieType) {
-				case 0 -> zombieMembers.add(new CommonInfect());
+				case 0 -> zombieMembers.add(new CommonInfected());
 				case 1 -> zombieMembers.add(new Tank());
 			}
 		}

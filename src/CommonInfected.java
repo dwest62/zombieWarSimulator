@@ -1,10 +1,10 @@
 /**
  * Represents a Tank subtype of Zombie.
  */
-public class CommonInfect extends Character {
+public class CommonInfected extends Character {
 	private static int n = 0;
 
-	public CommonInfect() {
+	public CommonInfected() {
 		super(30, 5, "Common Infect " + n++);
 	}
 }
