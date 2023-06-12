@@ -15,13 +15,29 @@ public class ZombieWarSimulator {
 		int zombieTeamSize = generateTeamSize();
 		int survivorTeamSize = generateTeamSize();
 		
-		// Report initial sizes to user.
-		System.out.println("There are " + survivorTeamSize + " survivors trying to make it to safety.");
-		System.out.println("But, there are " + zombieTeamSize + " zombies waiting for them.");
-		
 		// Generate random teams of zombies and survivors.
 		Team teamZombie = generateZombieTeam(zombieTeamSize);
 		Team teamSurvivor = generateSurvivorTeam(survivorTeamSize);
+		
+		// Report initial sizes to user.
+		System.out.print("There are " + survivorTeamSize + " survivors trying to make it to safety.");
+		System.out.print(" ("+ teamSurvivor.getMembers().stream()
+				.filter(m -> m.getClass().equals(Newbie.class))
+				.count()+ " Newbies, ");
+		System.out.print(teamSurvivor.getMembers().stream()
+				.filter(m -> m.getClass().equals(Civilian.class))
+				.count()+ " Civilians, ");
+		System.out.print(teamSurvivor.getMembers().stream()
+				.filter(m -> m.getClass().equals(Mercenary.class))
+				.count()+ " Mercenaries");
+		System.out.println(")");
+		System.out.print("But, there are " + zombieTeamSize + " zombies waiting for them. (");
+		System.out.print(teamZombie.getMembers().stream()
+				.filter(m -> m.getClass().equals(CommonInfect.class))
+				.count()+ " Common Infected, ");
+		System.out.println(teamZombie.getMembers().stream()
+				.filter(m -> m.getClass().equals(Tank.class))
+				.count()+ " Tanks)");
 		
 		// The survivors start.
 		TeamType currTeam = TeamType.SURVIVOR;
@@ -38,8 +54,12 @@ public class ZombieWarSimulator {
 		}
 		
 		// Report how many (if any) survivors made it out alive.
+		if(teamSurvivor.getSize() ==0) {
+			System.out.println("None of the survivors made it.");
+		} else {
 		System.out.println("It seems " + teamSurvivor.getSize() +
 			(teamSurvivor.getSize() == 1 ? " has " : " have ") + "made it to safety.");
+		}
 	}
 	
 	/**

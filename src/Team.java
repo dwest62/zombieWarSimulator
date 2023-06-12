@@ -36,12 +36,33 @@ public class Team {
         // The sum of the attack power of each character in this team.
         int totalTeamAttackPower = this.getMembers().stream()
             .reduce(0, (accum, c) -> accum + c.getAttack(), Integer::sum);
+        for(int n = 0; n < this.getSize(); n++) {
+        	Character attacker = this.members.get(n);
+        	if(!attacker.isAlive()) {
+        		continue;
+        	}
+            for(int p = 0; p < defenderTeam.getSize(); p++) {
+            	Character victim = defenderTeam.members.get(p);
+            	if(!victim.isAlive()) {
+            		continue;
+            	}
+            	int victimhealth = attacker.attack(victim);
+            	if(victimhealth <= 0) {
+            		System.out.printf("%s %d killed %s %d%n", attacker.getClass().getSimpleName(),
+            				n,victim.getClass().getSimpleName(),p);
+            		defenderTeam.moveToGraveyard(victim);
+            	}
+            }
+        }
         
         // Loops over each defender and checks if they are dead (in the graveyard). If they are not, they take damage
         // equal to this team's total attack power.
-        for(Character defender: defenders)
-            if (!defenderTeam.getGraveyard().contains(defender) && defender.takeDamage(totalTeamAttackPower) == 0)
-                defenderTeam.moveToGraveyard(defender);
+		/*
+		 * for(Character defender: defenders) if
+		 * (!defenderTeam.getGraveyard().contains(defender) &&
+		 * defender.takeDamage(totalTeamAttackPower) == 0)
+		 * defenderTeam.moveToGraveyard(defender);
+		 */
         
         return defenderTeam.getSize() == 0;
     }

@@ -33,4 +33,16 @@ public class Character {
         return this.attack;
     }
     
+    public int attack(Character other) {
+    	if(other.health > attack) {
+    		other.health -= attack;
+    	} else {
+    		
+    		other.health = 0;
+    	}
+    		return other.health;
+    }
+    public boolean isAlive() {
+    	return health > 0;
+    }
 }
