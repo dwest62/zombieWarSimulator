@@ -22,14 +22,16 @@ public class Team {
         List<Character> defenders = defenderTeam.getMembers().stream().toList();
         List<Character> attackers = this.getMembers();
         
-        int totalTeamAttackPower = attackers.stream()
-            .reduce(0, (accum, c) -> accum + c.getAttack(), Integer::sum);
-        
         // Loops over each victim and checks if they are dead (in the graveyard). If they are not, they take damage
         // equal to the attackers total attack power.
         for(Character defender: defenders)
-            if (!defenderTeam.getGraveyard().contains(defender) && defender.takeDamage(totalTeamAttackPower) == 0)
-                defenderTeam.moveToGraveyard(defender);
+            for(Character attacker: attackers) {
+                if(defender.isAlive() && defender.takeDamage(attacker.getAttack()) == 0) {
+                    System.out.printf("%s killed %s%n",
+                        attacker.getName(),defender.getName());
+                    defenderTeam.moveToGraveyard(defender);
+                }
+            }
         
         return defenderTeam.getSize() == 0;
     }
