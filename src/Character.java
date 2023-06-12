@@ -2,12 +2,19 @@
  * Represents a base Character class.
  */
 public class Character {
+    private String name = "";
     private int health;
     private final int attack;
 
     public Character(int health, int attack){
         this.health = health;
         this.attack = attack;
+    }
+    
+    public Character(int health, int attack, String name) {
+        this.health = health;
+        this.attack = attack;
+        this.name = name;
     }
     
     /**
@@ -31,6 +38,14 @@ public class Character {
      */
     public int getAttack() {
         return this.attack;
+    }
+    
+    public boolean isAlive() {
+        return this.health > 0;
+    }
+    
+    public String getName() {
+        return this.name;
     }
     
 }
