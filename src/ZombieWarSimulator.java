@@ -34,6 +34,7 @@ public class ZombieWarSimulator {
 		System.out.print("But, there are " + zombieTeamSize + " zombies waiting for them. (");
 		System.out.print(teamZombie.getMembers().stream()
 			.filter(m -> m.getClass().equals(CommonInfected.class))
+
 			.count()+ " Common Infected, ");
 		System.out.println(teamZombie.getMembers().stream()
 			.filter(m -> m.getClass().equals(Tank.class))
