@@ -18,6 +18,7 @@ public class ZombieWarSimulator {
 		// Generate random teams of zombies and survivors.
 		Team teamZombie = generateZombieTeam(zombieTeamSize);
 		Team teamSurvivor = generateSurvivorTeam(survivorTeamSize);
+		giveSurvivorsWeapons(teamSurvivor);
 		
 		// Report initial sizes to user.
 		System.out.print("There are " + survivorTeamSize + " survivors trying to make it to safety.");
@@ -97,6 +98,7 @@ public class ZombieWarSimulator {
 	public static Team generateSurvivorTeam(int size){
 		List<Character> survivorMembers = new ArrayList<>();
 		int survivorType;
+		int weaponType;
 		for(int i = 0; i < size; i++){
 			survivorType = (int)(Math.random() * 3);
 			switch (survivorType) {
@@ -106,6 +108,10 @@ public class ZombieWarSimulator {
 			}
 		}
 		return new Team(survivorMembers);
+	}
+	
+	public static void giveSurvivorsWeapons(Team team) {
+		team.getMembers().forEach(member -> ((Survivor) member).setWeapon(Weapon.getRandom()));
 	}
 	
 }

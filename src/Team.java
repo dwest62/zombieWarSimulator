@@ -27,8 +27,10 @@ public class Team {
         for(Character defender: defenders)
             for(Character attacker: attackers) {
                 if(defender.isAlive() && defender.takeDamage(attacker.getAttack()) == 0) {
-                    System.out.printf("%s killed %s%n",
-                        attacker.getName(),defender.getName());
+                    String weaponText = attacker.getClass().getSuperclass().equals(Survivor.class) ?
+                        " using a " + ((Survivor) attacker).getWeapon() : "";
+                    System.out.printf("%s killed %s%s.%n",
+                        attacker.getName(), defender.getName(), weaponText);
                     defenderTeam.moveToGraveyard(defender);
                 }
             }
