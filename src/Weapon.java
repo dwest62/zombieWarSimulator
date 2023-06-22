@@ -21,7 +21,7 @@ public enum Weapon {
 	}
 	
 	public static Weapon getRandom() {
-		return values()[(int) (Math.random()*(values().length - 1))];
+		return values()[(int) (Math.random()*(values().length))];
 	}
 	
 	@Override
