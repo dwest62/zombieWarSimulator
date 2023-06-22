@@ -19,6 +19,7 @@ public enum Weapon {
 		this.name = name;
 	}
 
+
 	//If player hits target, attack is returned. Otherwise, it's a miss - no attack returned
 	public int getAttack() {
 		return isHit() ? this.attack : 0;

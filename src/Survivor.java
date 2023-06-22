@@ -15,6 +15,7 @@ public class Survivor extends Character {
 	 *
 	 * @return attack value
 	 */
+
 	@Override
 	public int getAttack() {
 		return this.weapon != null ? weapon.getAttack() : super.getAttack();

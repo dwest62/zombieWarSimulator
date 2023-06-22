@@ -120,4 +120,8 @@ public class ZombieWarSimulator {
 		team.getMembers().forEach(member -> ((Survivor) member).setWeapon(Weapon.getRandom()));
 	}
 	
+	public static void giveSurvivorsWeapons(Team team) {
+		team.getMembers().forEach(member -> ((Survivor) member).setWeapon(Weapon.getRandom()));
+	}
+	
 }
