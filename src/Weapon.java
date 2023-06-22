@@ -1,9 +1,13 @@
 import java.util.random.RandomGenerator;
 
 public enum Weapon {
+	ASSAULTRIFLE("Assault Rifle", 70, .65),
 	AXE("Axe",20, .90),
-	PISTOL("Pistol", 40, .75),
-	SHOTGUN("Shotgun",90, .45);
+	CROWBAR("Crowbar", 17, .92),
+	PISTOL("Pistol", 30, .75),
+	SHOTGUN("Shotgun",80, .45);
+	
+	
 	
 	private final int attack;
 	private final double accuracy;
