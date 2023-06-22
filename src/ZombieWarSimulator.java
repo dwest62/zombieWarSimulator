@@ -109,7 +109,13 @@ public class ZombieWarSimulator {
 		}
 		return new Team(survivorMembers);
 	}
-	
+
+
+	/**
+	 * Gives a random weapon to each member of the team
+	 *
+	 * @param team Survivor team members
+	 */
 	public static void giveSurvivorsWeapons(Team team) {
 		team.getMembers().forEach(member -> ((Survivor) member).setWeapon(Weapon.getRandom()));
 	}
