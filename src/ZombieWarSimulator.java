@@ -18,6 +18,7 @@ public class ZombieWarSimulator {
 		// Generate random teams of zombies and survivors.
 		Team teamZombie = generateZombieTeam(zombieTeamSize);
 		Team teamSurvivor = generateSurvivorTeam(survivorTeamSize);
+		giveSurvivorsWeapons(teamSurvivor);
 		
 		// Report initial sizes to user.
 		System.out.print("There are " + survivorTeamSize + " survivors trying to make it to safety.");
@@ -33,7 +34,8 @@ public class ZombieWarSimulator {
 		System.out.println(")");
 		System.out.print("But, there are " + zombieTeamSize + " zombies waiting for them. (");
 		System.out.print(teamZombie.getMembers().stream()
-			.filter(m -> m.getClass().equals(CommonInfect.class))
+			.filter(m -> m.getClass().equals(CommonInfected.class))
+
 			.count()+ " Common Infected, ");
 		System.out.println(teamZombie.getMembers().stream()
 			.filter(m -> m.getClass().equals(Tank.class))
@@ -80,7 +82,7 @@ public class ZombieWarSimulator {
 		for (int i = 0; i < size; i++){
 			zombieType = (int)(Math.random()*2);
 			switch (zombieType) {
-				case 0 -> zombieMembers.add(new CommonInfect());
+				case 0 -> zombieMembers.add(new CommonInfected());
 				case 1 -> zombieMembers.add(new Tank());
 			}
 		}
@@ -96,6 +98,7 @@ public class ZombieWarSimulator {
 	public static Team generateSurvivorTeam(int size){
 		List<Character> survivorMembers = new ArrayList<>();
 		int survivorType;
+		int weaponType;
 		for(int i = 0; i < size; i++){
 			survivorType = (int)(Math.random() * 3);
 			switch (survivorType) {
@@ -105,6 +108,10 @@ public class ZombieWarSimulator {
 			}
 		}
 		return new Team(survivorMembers);
+	}
+	
+	public static void giveSurvivorsWeapons(Team team) {
+		team.getMembers().forEach(member -> ((Survivor) member).setWeapon(Weapon.getRandom()));
 	}
 	
 }
